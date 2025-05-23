@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/aimple-weather-app/static/css/main.fc51b5dd.css",
-    "main.js": "/aimple-weather-app/static/js/main.cde76a3b.js",
-    "static/js/453.5103898c.chunk.js": "/aimple-weather-app/static/js/453.5103898c.chunk.js",
-    "index.html": "/aimple-weather-app/index.html",
-    "main.fc51b5dd.css.map": "/aimple-weather-app/static/css/main.fc51b5dd.css.map",
-    "main.cde76a3b.js.map": "/aimple-weather-app/static/js/main.cde76a3b.js.map",
-    "453.5103898c.chunk.js.map": "/aimple-weather-app/static/js/453.5103898c.chunk.js.map"
+    "main.css": "/simple-weather-app/static/css/main.fc51b5dd.css",
+    "main.js": "/simple-weather-app/static/js/main.e9da54ad.js",
+    "static/js/453.5103898c.chunk.js": "/simple-weather-app/static/js/453.5103898c.chunk.js",
+    "index.html": "/simple-weather-app/index.html",
+    "main.fc51b5dd.css.map": "/simple-weather-app/static/css/main.fc51b5dd.css.map",
+    "main.e9da54ad.js.map": "/simple-weather-app/static/js/main.e9da54ad.js.map",
+    "453.5103898c.chunk.js.map": "/simple-weather-app/static/js/453.5103898c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fc51b5dd.css",
-    "static/js/main.cde76a3b.js"
+    "static/js/main.e9da54ad.js"
   ]
 }
