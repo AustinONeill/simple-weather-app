@@ -1,63 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const API_KEY = 'ee9fc413ee0d5f45cb95332611591cc8'; // Replace with your OpenWeatherMap API key
+function Weather({ weather }) {
+  const generateAdvice = () => {
+    if (!weather) return '';
 
-function Weather() {
-  const [city, setCity] = useState('');
-  const [weather, setWeather] = useState(null);
-  const [error, setError] = useState('');
+    const wind = weather.wind.speed;
+    const pressure = weather.main.pressure;
+    const desc = weather.weather[0].description.toLowerCase();
 
-  const fetchWeather = async () => {
-    if (!city) {
-      setError('Please enter a city name.');
-      setWeather(null);
-      return;
-    }
-    try {
-      setError('');
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-      );
-      const data = await response.json();
-      if (data.cod === 200) {
-        setWeather(data);
-      } else {
-        setError(data.message);
-        setWeather(null);
-      }
-    } catch (err) {
-      setError('Failed to fetch weather.');
-      setWeather(null);
-    }
+    if (wind > 15) return 'Windy! Consider fishing in sheltered spots.';
+    if (pressure < 1000) return 'Low pressure, fish may be more active.';
+    if (desc.includes('rain')) return 'Rainy conditions — fish near cover.';
+    return 'Great day for fishing! Try early morning or late evening.';
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Simple Weather App</h2>
-      <input
-        type="text"
-        placeholder="Enter city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="form-control mb-2"
-      />
-      <button onClick={fetchWeather} className="btn btn-primary mb-3">
-        Get Weather
-      </button>
-
-      {error && <div className="alert alert-danger">{error}</div>}
-
-      {weather && (
-        <div className="card">
-          <div className="card-body">
-            <h3>{weather.name}, {weather.sys.country}</h3>
-            <h4>{weather.main.temp} °C</h4>
-            <p>{weather.weather[0].description}</p>
-            <p>Humidity: {weather.main.humidity}%</p>
-            <p>Wind Speed: {weather.wind.speed} m/s</p>
-          </div>
-        </div>
-      )}
+    <div className="weather-card">
+      <h2>{weather.name}, {weather.sys.country}</h2>
+      <p>🌡️ Temp: {weather.main.temp}°C</p>
+      <p>☁️ Conditions: {weather.weather[0].description}</p>
+      <p>💨 Wind: {weather.wind.speed} m/s</p>
+      <p>📉 Pressure: {weather.main.pressure} hPa</p>
+      <p>💧 Humidity: {weather.main.humidity}%</p>
+      <p>🌅 Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</p>
+      <p>🌇 Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</p>
+      <p>🎣 Advice: <strong>{generateAdvice()}</strong></p>
     </div>
   );
 }
